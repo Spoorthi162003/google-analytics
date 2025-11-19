@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SweetCrumbs Bakery</title>
+
+<!-- Google Analytics 4 (Replace G-XXXXXXXXXX with your ID) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #fff7f2;
+        color: #333;
+    }
+
+    /* NAVIGATION */
+    nav {
+        background: #ffb39b;
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    nav .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+    }
+    nav ul {
+        display: flex;
+        gap: 20px;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+    nav a {
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+    }
+    nav a:hover {
+        text-decoration: underline;
+    }
+
+    /* SECTIONS */
+    section {
+        padding: 50px 20px;
+        max-width: 1100px;
+        margin: auto;
+    }
+
+    h1, h2 {
+        color: #d46a54;
+    }
+
+    /* HERO */
+    .hero {
+        background: url('https://images.unsplash.com/photo-1511376777868-611b54f68947') center/cover no-repeat;
+        padding: 150px 20px;
+        text-align: center;
+        color: white;
+    }
+
+    .btn {
+        display: inline-block;
+        background: #ff8f7d;
+        padding: 12px 25px;
+        color: white;
+        border-radius: 8px;
+        margin-top: 20px;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+    .btn:hover {
+        background: #ff7059;
+    }
+
+    /* GRID CARDS */
+    .grid {
+        display: grid;
+        gap: 25px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        margin-top: 30px;
+    }
+    .card {
+        background: white;
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+        transition: .2s;
+    }
+    .card:hover {
+        transform: scale(1.05);
+    }
+    .card img {
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    /* CONTACT FORM */
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    .contact-form input,
+    .contact-form textarea {
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+    }
+
+    /* FOOTER */
+    footer {
+        background: #ffb39b;
+        text-align: center;
+        padding: 20px;
+        color: white;
+        margin-top: 40px;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="logo">SweetCrumbs</div>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#analytics">Analytics Story</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- HOME -->
+<header id="home" class="hero">
+    <h1>Welcome to SweetCrumbs Bakery</h1>
+    <p>Fresh, handmade treats baked with love.</p>
+    <a href="#menu" class="btn">Explore Menu</a>
+</header>
+
+<!-- MENU -->
+<section id="menu">
+    <h1>Our Menu</h1>
+
+    <div class="grid">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1505253210918-818f8fc16833" alt="">
+            <h2>Vanilla Cupcake</h2>
+            <p>$3.50</p>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1587668178277-295a9f7b8a2a" alt="">
+            <h2>Chocolate Cake</h2>
+            <p>$25.00</p>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1626094309830-cc3e53022929" alt="">
+            <h2>Macarons (Box of 6)</h2>
+            <p>$12.00</p>
+        </div>
+    </div>
+</section>
+
+<!-- ANALYTICS -->
+<section id="analytics">
+    <h1>How Sarah Uses Google Analytics</h1>
+
+    <h2>1. Visitor Traffic Sources</h2>
+    <canvas id="trafficChart"></canvas>
+
+    <h2>2. Popular Pages</h2>
+    <canvas id="pagesChart"></canvas>
+
+    <h2>3. Checkout Behavior</h2>
+    <canvas id="checkoutChart"></canvas>
+
+    <h2>4. Conversions</h2>
+    <canvas id="conversionChart"></canvas>
+</section>
+
+<script>
+// ---- Traffic Sources ----
+new Chart(document.getElementById("trafficChart"), {
+    type: "pie",
+    data: {
+        labels: ["Instagram", "Google Search", "Direct"],
+        datasets: [{
+            data: [50, 30, 20],
+            backgroundColor: ["#ff9f80", "#ffcc80", "#ffd580"]
+        }]
+    }
+});
+
+// ---- Popular Pages ----
+new Chart(document.getElementById("pagesChart"), {
+    type: "bar",
+    data: {
+        labels: ["Cupcakes", "Cookies", "Wedding Cakes"],
+        datasets: [{
+            label: "Views",
+            data: [350, 200, 80],
+            backgroundColor: "#ffab91"
+        }]
+    }
+});
+
+// ---- Checkout Drop-off ----
+new Chart(document.getElementById("checkoutChart"), {
+    type: "line",
+    data: {
+        labels: ["Cart", "Shipping Info", "Payment", "Confirmation"],
+        datasets: [{
+            label: "Users Remaining",
+            data: [300, 150, 120, 110],
+            borderColor: "#ff7043",
+            fill: false
+        }]
+    }
+});
+
+// ---- Conversions ----
+new Chart(document.getElementById("conversionChart"), {
+    type: "bar",
+    data: {
+        labels: ["Instagram Ads", "Search Traffic", "Direct"],
+        datasets: [{
+            label: "Purchases",
+            data: [65, 100, 35],
+            backgroundColor: ["#ff8a65", "#ffcc80", "#ffe0b2"]
+        }]
+    }
+});
+</script>
+
+<!-- CONTACT -->
+<section id="contact">
+    <h1>Contact Us</h1>
+
+    <form class="contact-form">
+        <input type="text" placeholder="Your Name">
+        <input type="email" placeholder="Email Address">
+        <textarea placeholder="Your Message"></textarea>
+        <button class="btn">Send Message</button>
+    </form>
+</section>
+
+<footer>
+    &copy; 2025 SweetCrumbs Bakery
+</footer>
+
+</body>
+</html>
